@@ -37,6 +37,7 @@ import java.util.Date;
 
 
 public class CalenderDays implements IRetryAnalyzer {
+    //this one is the last version
 
     int counter = 0;
     int retryLimit = 20;
@@ -62,21 +63,19 @@ public class CalenderDays implements IRetryAnalyzer {
         WebDriver driver =new ChromeDriver();
         driver.get("https://skyward.iscorp.com/HarmonyTXStuSTS");
         //login
-
         driver.manage().window().maximize();
         driver.findElement(By.id("UserName")).sendKeys("Automation.1");
         driver.findElement(By.id("Password")).sendKeys("Auto1.!@#");
         driver.findElement(By.cssSelector("button[type='submit']")).click();
         //Choose the district
         WebDriverWait dr=new WebDriverWait(driver,20);
-
         // Step 6: Locate the search area, and wait till it appears.
         dr.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='autoid1']/a/span")));
         Thread.sleep(1000);
         driver.findElement(By.xpath("//*[@id='autoid1']/a/span")).click();
         dr.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='_code']")));
         Thread.sleep(1000);
-        driver.findElement(By.xpath("//*[@id='_code']")).sendKeys("076");
+        driver.findElement(By.xpath("//*[@id='_code']")).sendKeys("011");
         Thread.sleep(200);
         driver.findElement(By.xpath("//*[@id='_code']")).sendKeys(Keys.ARROW_DOWN);
         Thread.sleep(200);
@@ -85,8 +84,8 @@ public class CalenderDays implements IRetryAnalyzer {
         Thread.sleep(1000);
         driver.get("https://skyward.iscorp.com/HarmonyTXStu/Attendance/Calendar/List?w=4c4dfbbc70d94999a090e57d689e907f&p=a2d6698bb58c44e1ad0a6ec213c2238b");
         //
-        Thread.sleep(1000);
 
+        Thread.sleep(1000);
         //driver.findElement(By.linkText("Austin-HSA-K-8 Main")).click();
         //Select s = new Select(driver.findElement(By.id("//*[@id=\"CalendarCalendarDays_footer\"]/div[1]/select")));
         //s.selectByValue("200");
@@ -100,9 +99,7 @@ public class CalenderDays implements IRetryAnalyzer {
         String lastXpathCalender;
         String lastXpathDays;
         String lastDate=null;
-
-        for (int i=0;i<countCalender;i++){
-
+        for (int i=1;i<countCalender;i++){
             lastXpathCalender= "//*[@id='"+"browse_lockedRow"+i+"']";
             Thread.sleep(1000);
             dr.until(ExpectedConditions.presenceOfElementLocated(By.xpath(lastXpathCalender)));
